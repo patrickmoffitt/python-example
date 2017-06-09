@@ -1,0 +1,35 @@
+body,
+#modules-list {
+  margin: 2em 4em;
+  font-size: small;
+  font-family: 'Noto mono', monospace;
+}
+#modules-list li {
+  width: 16em;
+}
+#modules-list span {
+  display: inline-flex;
+}
+.module-name {
+  width: 12em;
+}
+.module-version {
+  width: 4em;
+}
+#list-modules {
+  background-color: #394a66;
+  color: #eceeef;
+}
+#list-modules:hover {
+  background-color: #eceeef;
+  color: #394a66
+}
+
+#list-modules:focus {
+  outline: #eceeef auto 0.125em;
+}
+#spinner {
+  width: 150px;
+  margin: 5em 10em;
+  display: none;
+}

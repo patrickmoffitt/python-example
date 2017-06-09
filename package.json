@@ -1,0 +1,23 @@
+{
+  "name": "python-example",
+  "productName": "Python Integration Example",
+  "version": "1.0.0",
+  "description": "Demonstrates using Python Scripts with Electron.",
+  "main": "main.js",
+  "repository": "https://github.com/patrickmoffitt/python-example",
+  "author": "Patrick K. Moffitt, CSM, M.A.",
+  "license": "MIT",
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron .",
+    "start-mac": "/Applications/Electron.app/Contents/MacOS/Electron ."
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "standard": {
+    "globals": [
+      "$"
+    ]
+  }
+}
