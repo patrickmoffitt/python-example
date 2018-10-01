@@ -10,7 +10,11 @@
   "devDependencies": {},
   "scripts": {
     "start": "electron .",
-    "start-mac": "/Applications/Electron.app/Contents/MacOS/Electron ."
+    "start-mac": "/Applications/Electron.app/Contents/MacOS/Electron .",
+    "package-mac": "electron-packager . --electronVersion=1.6.3 --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds",
+    "package-mac-dmg": "electron-installer-dmg './release-builds/Python Integration Example-darwin-x64/Python Integration Example.app' --out=./release-builds/ --overwrite 'Python Integration Example'",
+    "package-win": "electron-packager . --electronVersion=1.6.3 --overwrite --asar=true --platform=win32 --arch=ia32 --prune=true --out=release-builds",
+    "package-linux": "electron-packager . --electronVersion=1.6.3 --overwrite --platform=linux --arch=x64 --prune=true --out=release-builds"
   },
   "dependencies": {
     "jquery": "^3.2.1"
