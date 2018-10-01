@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# Release builds
+release-builds/
+
+# Python Cache
+app/python/__pycache__/
