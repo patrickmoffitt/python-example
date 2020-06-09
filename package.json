@@ -17,7 +17,7 @@
     "package-linux": "electron-packager . --electronVersion=1.6.3 --overwrite --platform=linux --arch=x64 --prune=true --out=release-builds"
   },
   "dependencies": {
-    "jquery": "^3.4.0"
+    "jquery": "^3.5.1"
   },
   "standard": {
     "globals": [
