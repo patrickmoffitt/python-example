@@ -1,3 +1,6 @@
+# Mac OS
+._*
+
 # Logs
 logs
 *.log
@@ -62,3 +65,7 @@ release-builds/
 
 # Python Cache
 app/python/__pycache__/
+
+# JetBrains
+.idea
+

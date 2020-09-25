@@ -5,16 +5,16 @@ body,
   font-family: 'Noto mono', monospace;
 }
 #modules-list li {
-  width: 16em;
+  width: auto;
 }
 #modules-list span {
   display: inline-flex;
 }
 .module-name {
-  width: 12em;
+  width: 24em;
 }
 .module-version {
-  width: 4em;
+  width: auto;
 }
 #list-modules {
   background-color: #394a66;

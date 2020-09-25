@@ -11,7 +11,7 @@ const spawn = require('child_process').spawn
 /*
   Convert unicode bytes to string.
 */
-let _utf8ArrayToStr = function (array) {
+const _utf8ArrayToStr = function (array) {
   let out, i, len, c, char2, char3
   out = ''
   len = array.length
@@ -64,7 +64,7 @@ module.exports.getPythonAppDir = function () {
 */
 module.exports.initPythonWin32 = function (callback) {
   if (os.platform() === 'win32') {
-    let pythonFileSystemDir = path.join(app.getPath('userData'), 'python')
+    const pythonFileSystemDir = path.join(app.getPath('userData'), 'python')
     try {
       // This will throw if it fails. If it works there is nothing to do.
       fs.accessSync(pythonFileSystemDir, fs.constants.F_OK)
@@ -73,7 +73,7 @@ module.exports.initPythonWin32 = function (callback) {
       }
     } catch (error) {
       console.log(error.message, 'Creating pythonFileSystemDir', pythonFileSystemDir)
-      let pythonAsarDir = path.join(__dirname, 'python')
+      const pythonAsarDir = path.join(__dirname, 'python')
       fs.mkdirSync(pythonFileSystemDir, '0644')
       fs.readdir(pythonAsarDir, (error, files) => {
         if (error) {
@@ -103,7 +103,7 @@ module.exports.initPythonWin32 = function (callback) {
   Attempt to locate Python 3+ across platforms.
 */
 module.exports.getPythonPath = function () {
-  let platform = os.platform()
+  const platform = os.platform()
   let which = null
   let pythonPath = ''
   let pythonBin = ''
@@ -148,33 +148,18 @@ module.exports.getPythonPath = function () {
     }
   } else if (platform === 'win32') {
     delimiter = ';'
-    which = 'where python3'
+    options = {
+      encoding: 'utf8'
+    }
+    which = 'where "%PATH%:python"'
     try {
-      python = _utf8ArrayToStr(execSync(which, {})).replace(/\r?\n|\r/g, '')
+      python = execSync(which, options).replace(/\r/g, '').split(/\n/, 1)[0]
       if (python.length > 0) {
         pythonPath = python
         pythonBin = pythonPath.replace(/\r?\n|\r/g, '')
       }
     } catch (e) {
-      try {
-        which = 'where python'
-        python = _utf8ArrayToStr(execSync(which, {})).replace(/\r?\n|\r/g, '')
-        if (python.length > 0) {
-          try {
-            version = '"' + python + '" -V 2>&1'
-            v = parseInt(_utf8ArrayToStr(
-              execSync(version, {})).split(' ')[1].split('.')[0])
-            if (v === 3) {
-              pythonPath = python
-              pythonBin = pythonPath.replace(/\r?\n|\r/g, '')
-            }
-          } catch (e) {
-            return null
-          }
-        }
-      } catch (e) {
-        return null
-      }
+      return null
     }
   }
   if (pythonPath.length > 0) {
@@ -191,10 +176,10 @@ module.exports.getPythonPath = function () {
   See app/python/list_modules.py
 */
 module.exports.getPythonModules = function (callback) {
-  let pyPath = this.getPythonPath()
-  let pyDir = this.getPythonAppDir()
-  let script = path.join(pyDir, 'list_modules.py')
-  let lm = spawn(pyPath.pythonBin, [script], {
+  const pyPath = this.getPythonPath()
+  const pyDir = this.getPythonAppDir()
+  const script = path.join(pyDir, 'list_modules.py')
+  const lm = spawn(pyPath.pythonBin, [script], {
     cwd: pyDir,
     env: {
       PATH: pyPath.pythonPath + pyPath.delimiter + process.env.PATH,
@@ -220,10 +205,10 @@ module.exports.getPythonModules = function (callback) {
   install what's missing. See app/python/check_depends.py
 */
 module.exports.getPythonDepends = function () {
-  let pyPath = this.getPythonPath()
-  let pyDir = this.getPythonAppDir()
-  let script = path.join(pyDir, 'check_depends.py')
-  let cd = spawn(pyPath.pythonBin, [script], {
+  const pyPath = this.getPythonPath()
+  const pyDir = this.getPythonAppDir()
+  const script = path.join(pyDir, 'check_depends.py')
+  const cd = spawn(pyPath.pythonBin, [script], {
     cwd: pyDir,
     env: {
       PATH: pyPath.pythonPath + pyPath.delimiter + process.env.PATH,
@@ -231,7 +216,7 @@ module.exports.getPythonDepends = function () {
     }
   })
   cd.stderr.on('data', (data) => {
-    let options = {
+    const options = {
       title: 'Python Modules?',
       type: 'info',
       message: _utf8ArrayToStr(data),

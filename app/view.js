@@ -5,7 +5,7 @@ const electron = require('electron').remote
 module.exports.currentWindow = electron.getCurrentWindow()
 
 module.exports.showPythonModules = function (modulesJSON) {
-  let modules = JSON.parse(modulesJSON)
+  const modules = JSON.parse(modulesJSON)
   let markup = '<ul>'
   for (let pythonModule of modules) {
     markup += '<li><span class="module-name">' + pythonModule.name +

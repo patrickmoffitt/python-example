@@ -9,7 +9,7 @@
 from importlib import import_module
 import sys
 
-depends = ['pkgutil', 'importlib', 'sys', 're', 'json']
+depends = ['pkg_resources', 'sys', 'json']
 
 for mod in depends:
     try:
