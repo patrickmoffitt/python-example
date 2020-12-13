@@ -26,3 +26,7 @@ Animated Screenshot
  ![Demo](screenshots/demo.gif)
 
 <b id="f1">1</b> Tested on Mac OS 10.15, Ubuntu 20.04, and Windows 10[↩](#a1)
+
+Project Status
+--------------
+This project has been archived and is no longer being maintained by the author.
